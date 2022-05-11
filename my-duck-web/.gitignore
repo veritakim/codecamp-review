@@ -30,3 +30,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# firebaseAdmin Key
+myduck-firebase-adminsdk-secret.json
