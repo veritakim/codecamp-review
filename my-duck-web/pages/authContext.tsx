@@ -3,14 +3,14 @@ import { auth } from "../firebase/clientApp";
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import React from "react";
 
+
 export const AuthContext = React.createContext<User | null>(null)
 
 // const ui = new firebase
 
-/*
 const provider = new GoogleAuthProvider();
 
-const login = () => {
+export const login = () => {
     signInWithPopup(auth, provider)
         .then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
@@ -32,9 +32,8 @@ const login = () => {
         });
 };
 
-const logout = () => {
+export const logout = () => {
     auth.signOut();
     console.log("logout");
 };
 
-*/

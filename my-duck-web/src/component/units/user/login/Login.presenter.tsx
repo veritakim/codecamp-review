@@ -1,23 +1,42 @@
 import styled from '@emotion/styled';
+import { ILoginUiType } from './Login.type';
+import * as S from './Login.style'
 
-const SignInSpan = styled.span`
-  cursor: pointer;
-`
 
-export default function LoginUI (props) {
+export default function LoginUI (props: ILoginUiType) {
 
   return (
-    <div>
-      <form onClick={props.handleSubmit(props.onClickLogin)}>
-        <h1>로그인 페이지입니뎅</h1>
-        <div>아이디 : <input type="text" {...props.register("email")}/></div>
-        <div>비밀번호 : <input type="password" {...props.register("password")} /></div>
-        <button>로그인</button>
-      </form>
-      <div>
-        <span>아이디가 없으신가요?</span>
-        <span onClick={props.onClickMoveSignIn}>회원가입</span>
-      </div>
-    </div>
+    <S.Body>
+      <S.BoxContainer>
+        <S.MainImgBox>
+          <S.LoginImg src='/myDuck.jpeg' />
+        </S.MainImgBox>
+
+        <S.LoginBox>
+          <form onSubmit={props.handleSubmit(props.onClickLogin)}>
+            <S.LogoDiv>
+              <S.Title>Login</S.Title>
+            </S.LogoDiv>
+            <S.InputDiv>
+              <S.InputStyle type="email" placeholder='email' {...props.register("email")}/>
+              <S.ErrorDiv>으엉</S.ErrorDiv>
+              <S.InputStyle type="password" placeholder='password' {...props.register("password")} />
+              <S.ErrorDiv>어엉</S.ErrorDiv>
+            </S.InputDiv>
+
+            <S.BtnDiv>
+              <S.LoginBtn>
+                <S.LoginBtnImg src='/loginKey.png' />
+              </S.LoginBtn>
+            </S.BtnDiv>
+          </form>
+          <S.BottomDiv>
+            <span>아이디가 없으신가요?</span>
+            <S.SignInSpan onClick={props.onClickMoveSignIn}>회원가입</S.SignInSpan>
+          </S.BottomDiv>
+        </S.LoginBox>
+
+      </S.BoxContainer>
+  </S.Body>
   )
 }
