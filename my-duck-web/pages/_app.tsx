@@ -1,11 +1,29 @@
-import initAuth from '../firebase/initAuth'
 import '../styles/globals.css'
+import { getAuth, connectAuthEmulator } from 'firebase/auth'
+import { RecoilRoot } from 'recoil'
+import ApolloSetting from '../src/component/commons/apollo';
+import { AuthContextProvider } from '../context/AuthContext';
+import { useRouter } from 'next/router';
+import { ProtectedRoute } from '../src/component/commons/protected/ProtectedRoute';
 
-initAuth()
+const noAuthRequired = ['/', '/user/login', '/user/signUp']
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component , pageProps }) {
+  const router = useRouter()
+
   return (
-      <Component {...pageProps} />
+    <RecoilRoot>
+      <AuthContextProvider>
+        {noAuthRequired.includes(router.pathname) ? (
+          <Component {...pageProps} />
+          ) 
+          : (
+          <ProtectedRoute>
+            <Component {...pageProps} />
+          </ProtectedRoute>
+        )}
+      </AuthContextProvider>
+    </RecoilRoot>
   )
 }
 

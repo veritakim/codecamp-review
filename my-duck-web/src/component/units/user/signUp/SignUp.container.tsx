@@ -1,16 +1,14 @@
-import LoginUI from "./Login.presenter";
-import { useForm } from "react-hook-form" 
-import { useRouter } from "next/router";
 import { ChangeEvent, MouseEvent, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useAuth } from "../../../../../context/AuthContext";
+import SignUpUi from "./SignUp.presenter";
 
-export default function LoginContainer () {
-  const { user, login } = useAuth()
-  const router = useRouter()
-
+export default function SignUpContainer () {
+  const { user, signUp } = useAuth()
   const [ newUser, setNewUser] = useState({
     email: "",
-    password: ""
+    password: "",
+    nickName: ""
   })
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,27 +25,27 @@ export default function LoginContainer () {
     })
   }
 
+  const onChangeNickName = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewUser({
+      ...newUser,
+      nickName: e.target.value
+    })
+  }
 
-  const onClickLogin = async () => {
+  const onClickSignUp = async (e: MouseEvent<HTMLButtonElement>) => {
     // alert("회원가입 버튼")
+    e.preventDefault()
     try{
-      await login(newUser.email, newUser.password)
-      router.push('/main')
+      await signUp( newUser.email, newUser.password)
     } catch (error: any) {
       console.log(error.message)
     }
   }
 
-  
-  const onClickMoveSignIn = () => {
-    router.push("/user/signUp")
-  }
-
-
-  return <LoginUI 
+  return <SignUpUi 
           onChangeEmail={onChangeEmail}
           onChangePassword={onChangePassword}
-          onClickLogin={onClickLogin}
-          onClickMoveSignIn={onClickMoveSignIn}
-          />
+          onChangeNickName={onChangeNickName}
+          onClickSignUp={onClickSignUp}
+      />
 }
