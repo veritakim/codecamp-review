@@ -1,12 +1,13 @@
-import { useEffect } from "react"
-import { useAuth } from "../../../../context/AuthContext"
+import { useEffect, useState } from "react"
+import MainUi from "./Main.presenter"
 
 export default function MainContainer () {
-
+  const [value, onChange] = useState(new Date());
 
   return (
-    <div>
-      로그인 한 사람만 들어올 수 있지
-    </div>
+    <MainUi 
+      value={value}
+      onChange={onChange}
+    />
   )
 }

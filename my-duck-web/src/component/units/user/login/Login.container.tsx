@@ -8,7 +8,7 @@ export default function LoginContainer () {
   const { user, login } = useAuth()
   const router = useRouter()
 
-  const [ newUser, setNewUser] = useState({
+  const [ newUser, setNewUser ] = useState({
     email: "",
     password: ""
   })
@@ -29,12 +29,13 @@ export default function LoginContainer () {
 
 
   const onClickLogin = async () => {
-    // alert("회원가입 버튼")
     try{
       await login(newUser.email, newUser.password)
-      router.push('/main')
+      
+      router.push('/board/main')
     } catch (error: any) {
-      console.log(error.message)
+      alert("아이디와 비밀번호를 확인해주세요")
+      // console.log(error.message)
     }
   }
 

@@ -5,6 +5,7 @@ import ApolloSetting from '../src/component/commons/apollo';
 import { AuthContextProvider } from '../context/AuthContext';
 import { useRouter } from 'next/router';
 import { ProtectedRoute } from '../src/component/commons/protected/ProtectedRoute';
+import Layout from '../src/component/commons/layout';
 
 const noAuthRequired = ['/', '/user/login', '/user/signUp']
 
@@ -19,7 +20,9 @@ function MyApp({ Component , pageProps }) {
           ) 
           : (
           <ProtectedRoute>
-            <Component {...pageProps} />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </ProtectedRoute>
         )}
       </AuthContextProvider>
