@@ -1,5 +1,7 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css'; 
+import moment from 'moment';
 
 interface CalendarProps {
   value: Date
@@ -7,11 +9,14 @@ interface CalendarProps {
 }
 
 export default function MainUi (props: CalendarProps) {
-
+  const [value, onChange] = useState(new Date());
 
   return (
     <div>
-      <Calendar onChange={props.onChange} value={props.value} />
+      <Calendar 
+        onChange={props.onChange} 
+        value={props.value} 
+        />
     </div>
   )
 }
