@@ -32,7 +32,7 @@ export default function LoginContainer () {
     try{
       await login(newUser.email, newUser.password)
       
-      router.push('/board/main')
+      router.push('/main')
     } catch (error: any) {
       alert("아이디와 비밀번호를 확인해주세요")
       // console.log(error.message)
