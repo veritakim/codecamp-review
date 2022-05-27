@@ -37,3 +37,11 @@ export const restoreAccessTokenLoadable = selector({
   },
 });
 
+
+export const imageState = atom({
+  key: "imageState",
+  default: {
+    x: 0,
+    y: 0
+  }
+})

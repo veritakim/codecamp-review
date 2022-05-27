@@ -18,21 +18,21 @@ function MyApp({ Component , pageProps }) {
   const router = useRouter()
 
   return (
-    <RecoilRoot>
-      <AuthContextProvider>
+    <AuthContextProvider>
         {noAuthRequired.includes(router.pathname) ? (
           <Component {...pageProps} />
           ) 
           : (
-          <ProtectedRoute>
-            <Global styles={globalStyles} />
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
+            <ProtectedRoute>
+              <RecoilRoot>
+              <Global styles={globalStyles} />
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+            </RecoilRoot>
           </ProtectedRoute>
         )}
       </AuthContextProvider>
-    </RecoilRoot>
   )
 }
 
